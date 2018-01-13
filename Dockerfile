@@ -17,3 +17,5 @@ RUN cp ubuntu/Makefile.example Makefile && \
     make all -j"$(nproc)"
 
 RUN bash models/getModels.sh
+
+CMD [ "python" , "script.py" ]
