@@ -1,0 +1,9 @@
+version: '3'
+services:
+  openpose:
+    volumes:
+    - .:/openpose
+    - /data/gait/data:/data
+    image: tahak/openpose
+    deploy:
+      replicas: 5

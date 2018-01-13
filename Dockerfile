@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn6-devel   
+FROM bvlc/caffe:gpu   
 # start with the nvidia container for cuda 8 with cudnn 5
 
 LABEL maintainer "Mustafa Taha Kocyigit <taha.kocyigit@gmail.com>"
@@ -10,9 +10,10 @@ RUN apt-get install libopencv-dev python-opencv python-pip -y
 
 COPY . /openpose
 
-WORKDIR openpose
-RUN sed -i 's/\<sudo chmod +x $1\>//g' ubuntu/install_caffe_and_openpose_if_cuda8.sh; \
-    sed -i 's/\<sudo chmod +x $1\>//g' ubuntu/install_openpose_if_cuda8.sh; \
-    sed -i 's/\<sudo -H\>//g' 3rdparty/caffe/install_caffe_if_cuda8.sh; \
-    sed -i 's/\<sudo\>//g' 3rdparty/caffe/install_caffe_if_cuda8.sh; \
-    sync; sleep 1; ./ubuntu/install_caffe_and_openpose_if_cuda8.sh
+WORKDIR /openpose
+
+RUN cp ubuntu/Makefile.example Makefile && \ 
+    cp ubuntu/Makefile.config.Ubuntu16_cuda8.example Makefile.config && \
+    make all -j"$(nproc)"
+
+RUN bash models/getModels.sh
