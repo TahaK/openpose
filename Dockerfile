@@ -1,4 +1,4 @@
-FROM taha/caffe 
+FROM tahak/caffe 
 # start with the nvidia container for cuda 8 with cudnn 6
 
 LABEL maintainer "Mustafa Taha Kocyigit <taha.kocyigit@gmail.com>"
