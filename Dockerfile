@@ -1,5 +1,5 @@
-FROM bvlc/caffe:gpu   
-# start with the nvidia container for cuda 8 with cudnn 5
+FROM taha/caffe 
+# start with the nvidia container for cuda 8 with cudnn 6
 
 LABEL maintainer "Mustafa Taha Kocyigit <taha.kocyigit@gmail.com>"
 
